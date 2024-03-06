@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -71,6 +73,15 @@ class DashboardController extends Controller
         return redirect()->route('student.index')->with($notification);
 
         
+    }
+
+    public function export_pdf(Request $request) {
+
+        $data = DB::table('students')->get()->toArray();
+
+        $pdf = Pdf::loadView('studentPdf', compact('data'));
+        return $pdf->download('report.pdf');
+
     }
 
 

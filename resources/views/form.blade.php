@@ -26,6 +26,9 @@
           </div>
           <div class="col-12">
             <button class="btn btn-primary mb-3"data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Student</button>
+            <form action="{{ route('student.export.pdf') }}" method="GET">
+              <button class="btn btn-primary mb-3" type="submit">Export PDF</button>
+            </form>
           </div>
           <div class="col-12">
             <table class="table table-dark table-hover">
